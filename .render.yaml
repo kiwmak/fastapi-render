@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: fastapi-render
+    env: docker
+    plan: free  # hoặc starter/pro tuỳ nhu cầu
+    autoDeploy: true
+    branch: main  # hoặc branch bạn đang dùng
+    healthCheckPath: /
+    envVars:
+      - key: PORT
+        value: 8000
