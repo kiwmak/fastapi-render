@@ -1,8 +1,18 @@
 FROM python:3.10-slim
 
+# Cài đặt các gói hệ thống cần thiết để biên dịch bcrypt và các lib khác
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    libffi-dev \
+    libssl-dev \
+    python3-dev \
+    cargo \
+ && rm -rf /var/lib/apt/lists/*
+
 WORKDIR /app
 
 COPY requirements.txt .
+RUN pip install --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
